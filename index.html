@@ -1,0 +1,611 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mandal Kirana Store | Fresh Groceries & Ration in Barbad, Jharkhand 828109</title>
+  <meta name="description" content="Mandal Kirana Store - Your trusted grocery store in Barbad, Jharkhand. Buy fresh Atta, Rice, Dals, Cooking Oils, Spices & Daily Essentials. Call or WhatsApp 6204339748." />
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    /* Profile, Logout & Login Button Styling */
+    .user-profile-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #f0fdf4;
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid #bbf7d0;
+      color: #15803d;
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+    .logout-btn {
+      background: #dc2626;
+      color: white;
+      border: none;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .logout-btn:hover {
+      background: #b91c1c;
+    }
+    .login-nav-btn {
+      background: #15803d;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .login-nav-btn:hover {
+      background: #166534;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        <span><i class="fa-solid fa-location-dot"></i> Barbad, Jharkhand 828109</span>
+        <span><i class="fa-solid fa-clock"></i> Open Today: 7:00 AM - 9:00 PM</span>
+      </div>
+      <div class="top-bar-right" style="display: flex; align-items: center; gap: 15px;">
+        
+        <!-- यदि यूजर लॉगिन नहीं है तो Login बटन दिखेगा -->
+        <a href="login.html" id="login-link-btn" class="login-nav-btn">
+          <i class="fa-solid fa-user"></i> Login / Register
+        </a>
+
+        <!-- यदि यूजर लॉगिन है तो प्रोफाइल और Logout बटन दिखेगा -->
+        <div id="profile-container" class="user-profile-badge" style="display: none;">
+          <span><i class="fa-solid fa-user-check"></i> <span id="nav-username">User</span></span>
+          <button class="logout-btn" onclick="logoutUser()">Logout</button>
+        </div>
+
+        <a href="tel:6204339748"><i class="fa-solid fa-phone"></i> Call Store: 6204339748</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Header & Navigation -->
+  <header>
+    <nav class="navbar">
+      <a class="brand-logo" href="/">
+        <div class="brand-logo-icon">
+          <i class="fa-solid fa-store"></i>
+        </div>
+        <div class="brand-title">
+          Mandal Kirana
+          <span>Groceries & Daily Essentials</span>
+        </div>
+      </a>
+
+      <!-- Live Search Bar -->
+      <div class="header-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-input" placeholder="Search Atta, Rice, Oil, Dal, Spices, Dairy..." />
+      </div>
+
+      <!-- Actions -->
+      <div class="header-actions">
+        <a href="https://wa.me/916204339748?text=Hello%20Mandal%20Kirana%20Store,%20I%20want%20to%20order%20groceries.%20My%20Name:%20%0AMy%20Delivery%20Location:%20" target="_blank" class="btn-whatsapp-quick">
+          <i class="fa-brands fa-whatsapp"></i> Order on WhatsApp
+        </a>
+
+        <button class="cart-icon-btn" id="cart-btn" aria-label="Shopping Cart">
+          <i class="fa-solid fa-basket-shopping"></i>
+          <span class="cart-badge" id="cart-badge">0</span>
+        </button>
+
+        <button class="hamburger" aria-label="Toggle Mobile Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile Nav Menu -->
+    <ul class="mobile-menu">
+      <li><a href="login.html" class="nav-link" style="color: #15803d; font-weight: 700;"><i class="fa-solid fa-user"></i> Login / Register</a></li>
+      <li><a href="#products" class="nav-link"><i class="fa-solid fa-border-all"></i> Browse Groceries</a></li>
+      <li><a href="#combos" class="nav-link"><i class="fa-solid fa-box-archive"></i> Ration Kits & Offers</a></li>
+      <li><a href="#contact" class="nav-link"><i class="fa-solid fa-location-dot"></i> Store Location & Contact</a></li>
+      <li><a class="nav-link" href="#contact"><i class="fa-solid fa-paper-plane"></i> Quick Order Form</a></li>
+      <li>
+        <a href="https://wa.me/916204339748?text=Hello%20Mandal%20Kirana%20Store,%20I%20want%20to%20order%20groceries.%20My%20Name:%20%0AMy%20Delivery%20Location:%20" target="_blank" class="btn-whatsapp-quick" style="justify-content: center; width: 100%; margin-top: 8px;">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp Order (6204339748)
+        </a>
+      </li>
+    </ul>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> Trusted Local Dukaan in Barbad
+        </div>
+        <h1 class="hero-title">
+          Fresh Groceries & Ration Delivered in <span>Barbad, Jharkhand</span>
+        </h1>
+        <p class="hero-desc">
+          Get premium quality Atta, Basmati Rice, Fresh Dals, Pure Cooking Oils, Spices, Dairy & Daily Household items delivered directly to your doorstep.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#products" class="btn-primary">
+            <i class="fa-solid fa-cart-shopping"></i> Shop Groceries
+          </a>
+          <a href="https://wa.me/916204339748?text=Hello%20Mandal%20Kirana%20Store,%20I%20need%20grocery%20home%20delivery.%20My%20Name:%20%0AMy%20Delivery%20Location:%20" target="_blank" class="btn-whatsapp-quick" style="padding: 12px 24px; font-size: 1rem;">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp 6204339748
+          </a>
+        </div>
+
+        <div class="hero-badges">
+          <div class="badge-item">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>Same Day Delivery in 828109</span>
+          </div>
+          <div class="badge-item">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <span>Best Market Rates</span>
+          </div>
+          <div class="badge-item">
+            <i class="fa-solid fa-hand-holding-hand"></i>
+            <span>Pay on Delivery / UPI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Card Graphic -->
+      <div class="hero-graphic-card">
+        <div class="hero-store-badge">
+          <i class="fa-solid fa-star"></i> Mandal Kirana Featured Items
+        </div>
+
+        <div class="hero-img-grid">
+          <div class="hero-img-box">
+            <img src="ft.jpg" alt="Chakki Fresh Atta">
+            <h4>Fresh Atta</h4>
+            <p>10 kg Pack</p>
+          </div>
+          <div class="hero-img-box">
+            <img src="rice.jpg" alt="Basmati Rice">
+            <h4>Basmati Rice</h4>
+            <p>5 kg Pack</p>
+          </div>
+          <div class="hero-img-box">
+            <img src="dal.jpg" alt="Toor Dal">
+            <h4>Fresh Dals</h4>
+            <p>1 kg Pack</p>
+          </div>
+          <div class="hero-img-box">
+            <img src="oil.jpg" alt="Mustard Oil">
+            <h4>Mustard Oil</h4>
+            <p>1 L Pouch</p>
+          </div>
+        </div>
+
+        <div class="hero-info-footer">
+          <span><i class="fa-solid fa-phone"></i> Direct Store Call:</span>
+          <a href="tel:6204339748">6204339748</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories & Filter Section -->
+  <section class="categories-section" id="categories">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Explore Categories</h2>
+        <p class="section-subtitle">Select a category to quickly filter items</p>
+      </div>
+    </div>
+
+    <div class="category-pills">
+      <button class="category-pill active" data-category="all">
+        <i class="fa-solid fa-border-all"></i> All Items
+      </button>
+      <button class="category-pill" data-category="staples">
+        <i class="fa-solid fa-wheat-awn"></i> Atta & Rice
+      </button>
+      <button class="category-pill" data-category="pulses">
+        <i class="fa-solid fa-bowl-food"></i> Dals & Pulses
+      </button>
+      <button class="category-pill" data-category="oils">
+        <i class="fa-solid fa-bottle-droplet"></i> Oil & Ghee
+      </button>
+      <button class="category-pill" data-category="spices">
+        <i class="fa-solid fa-mortar-pestle"></i> Spices & Salt
+      </button>
+      <button class="category-pill" data-category="dairy">
+        <i class="fa-solid fa-cow"></i> Dairy Products
+      </button>
+      <button class="category-pill" data-category="snacks">
+        <i class="fa-solid fa-mug-hot"></i> Tea & Snacks
+      </button>
+      <button class="category-pill" data-category="personal">
+        <i class="fa-solid fa-pump-soap"></i> Soaps & Detergents
+      </button>
+    </div>
+  </section>
+
+  <!-- Discount Banner -->
+  <div class="promo-banner">
+    <div class="promo-banner-inner">
+      <div class="promo-text">
+        <h3><i class="fa-solid fa-truck-ramp-box"></i> Free Home Delivery in Barbad!</h3>
+        <p>Order groceries worth ₹499 or more and get FREE delivery right at your door in Barbad (Pin 828109).</p>
+      </div>
+      <a href="https://wa.me/916204339748?text=Hello%20Mandal%20Kirana%20Store,%20I%20want%20to%20order%20groceries.%20My%20Name:%20%0AMy%20Delivery%20Location:%20" target="_blank" class="promo-btn">
+        Order Now 📲 6204339748
+      </a>
+    </div>
+  </div>
+
+  <!-- Products Catalog Section -->
+  <section class="products-section" id="products">
+    <div class="catalog-back-bar">
+      <span style="font-weight: 700; color: var(--primary-dark);"><i class="fa-solid fa-basket-shopping"></i> Mandal Kirana - Complete Grocery Catalog</span>
+      <button class="btn-back-home" onclick="closeCatalogView()">
+        <i class="fa-solid fa-arrow-left"></i> Back to Home
+      </button>
+    </div>
+
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">Fresh Grocery Catalog</h2>
+        <p class="section-subtitle">Click 'Add' to place items in your shopping cart</p>
+      </div>
+    </div>
+
+    <div class="products-grid" id="products-grid">
+      <!-- Dynamic Javascript Content -->
+    </div>
+  </section>
+
+  <!-- Ration Kits & Special Offers Section -->
+  <section class="combos-section" id="combos">
+    <div class="combo-card">
+      <div>
+        <span class="combo-badge"><i class="fa-solid fa-fire"></i> Best Savings Combo</span>
+        <h2 class="combo-title">Monthly Family Ration Kit</h2>
+        <p style="color: #854d0e; font-weight: 600;">Complete monthly household ration bundle for a family of 4-5 people.</p>
+
+        <ul class="combo-list">
+          <li><i class="fa-solid fa-circle-check"></i> Fortune Chakki Fresh Atta - 10 kg</li>
+          <li><i class="fa-solid fa-circle-check"></i> India Gate Basmati Rice - 5 kg</li>
+          <li><i class="fa-solid fa-circle-check"></i> Arhar Dal + Chana Dal - 2 kg</li>
+          <li><i class="fa-solid fa-circle-check"></i> Kachi Ghani Mustard Oil - 2 Litre</li>
+          <li><i class="fa-solid fa-circle-check"></i> Tata Salt + Everest Turmeric - 1 Pack Each</li>
+          <li><i class="fa-solid fa-circle-check"></i> Tata Tea Gold (500g) + Sugar (2 kg)</li>
+        </ul>
+
+        <div class="combo-price-box">
+          <span class="combo-price">Rs.1,999</span>
+          <span class="combo-mrp">MRP Rs.2,150</span>
+          <span style="color: #16a34a; font-weight: 800; font-size: 1rem;">Save Rs.351!</span>
+        </div>
+
+        <a href="https://wa.me/916204339748?text=Hello%20Mandal%20Kirana%20Store,%20I%20want%20to%20order%20the%20Monthly%20Family%20Ration%20Kit%20(Rs.1999).%20My%20Name:%20%0AMy%20Delivery%20Location:%20" target="_blank" class="btn-whatsapp-quick" style="display: inline-flex;">
+          <i class="fa-brands fa-whatsapp"></i> Order Monthly Kit on WhatsApp
+        </a>
+      </div>
+
+      <div style="text-align: center;">
+        <div style="background: #fef3c7; border-radius: 20px; padding: 40px 20px; border: 2px dashed #f59e0b; color: #b45309; font-weight: 800; font-size: 1.2rem;">
+          <i class="fa-solid fa-box-open" style="font-size: 2.5rem; margin-bottom: 10px; display: block;"></i>
+          MONTHLY RATION KIT PACK
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Store Features / Highlights -->
+  <section class="features-section">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="feature-content">
+          <h4>100% Genuine Quality</h4>
+          <p>Fresh stock directly sourced from verified distributor brands.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+        <div class="feature-content">
+          <h4>Fast Local Delivery</h4>
+          <p>Same day home delivery across Barbad & surrounding areas.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+        <div class="feature-content">
+          <h4>Wholesale Prices</h4>
+          <p>Unmatched local prices with exciting discounts on daily needs.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fa-brands fa-whatsapp"></i></div>
+        <div class="feature-content">
+          <h4>WhatsApp Ordering</h4>
+          <p>Simply send your grocery list to 6204339748 for quick dispatch.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Store Location Section -->
+  <section class="contact-section" id="contact">
+    <div class="section-header" style="margin-bottom: 30px;">
+      <div>
+        <h2 class="section-title">Visit or Contact Mandal Kirana Store</h2>
+        <p class="section-subtitle">We are located in the heart of Barbad, Jharkhand</p>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Store Info Card -->
+      <div class="contact-info-card">
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon"><i class="fa-solid fa-shop"></i></div>
+          <div class="contact-detail-text">
+            <h4>Store Name</h4>
+            <p style="font-weight: 700; color: #15803d; font-size: 1.1rem;">Mandal Kirana Store</p>
+          </div>
+        </div>
+
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="contact-detail-text">
+            <h4>Mobile & WhatsApp</h4>
+            <p><a href="tel:6204339748" style="color: #15803d; font-weight: 700;">+91 6204339748</a></p>
+          </div>
+        </div>
+
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="contact-detail-text">
+            <h4>Store Address</h4>
+            <p>Barbad, Jharkhand - 828109</p>
+          </div>
+        </div>
+
+        <div class="contact-detail-item">
+          <div class="contact-detail-icon"><i class="fa-solid fa-clock"></i></div>
+          <div class="contact-detail-text">
+            <h4>Working Hours</h4>
+            <p>Monday – Sunday: 7:00 AM – 9:00 PM</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+          <a href="https://wa.me/916204339748?text=Hello%20Mandal%20Kirana%20Store,%20I%20have%20an%20inquiry.%20My%20Location:%20" target="_blank" class="btn-whatsapp-quick" style="width: 100%; justify-content: center; padding: 12px;">
+            <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp (6204339748)
+          </a>
+        </div>
+      </div>
+
+      <!-- Express Grocery Order Form (ऑटोमैटिक नाम, मोबाइल और एड्रेस यहाँ भरेगा) -->
+      <div class="contact-form-card" id="order-form-box" style="background: linear-gradient(145deg, #ffffff, #f0fdf4); border: 2px solid #bbf7d0; border-radius: 24px; padding: 35px; box-shadow: 0 20px 25px -5px rgba(21, 128, 61, 0.1), 0 8px 10px -6px rgba(21, 128, 61, 0.1);">
+        
+        <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 22px; border-bottom: 2px dashed #dcfce7; padding-bottom: 16px;">
+          <div style="background: #15803d; color: #ffffff; width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; box-shadow: 0 8px 16px rgba(21, 128, 61, 0.25);">
+            <i class="fa-solid fa-basket-shopping"></i>
+          </div>
+          <div>
+            <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 1.4rem; font-weight: 800; color: #14532d; margin-bottom: 4px;">Express Grocery Order</h3>
+            <p style="color: #4b5563; font-size: 0.88rem; font-weight: 500;">Select your items & get doorstep delivery in Barbad.</p>
+          </div>
+        </div>
+
+        <form id="store-order-form">
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label for="customer_name" style="font-weight: 700; color: #1e293b; font-size: 0.9rem; margin-bottom: 6px; display: block;">
+              <i class="fa-solid fa-user-shield" style="color: #15803d; margin-right: 6px;"></i> Full Name
+            </label>
+            <input type="text" id="customer_name" class="form-input" placeholder="e.g. Gorachand Mandal" required style="border-radius: 12px; border: 1.5px solid #cbd5e1; padding: 12px 16px; width: 100%;" />
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label for="phone_number" style="font-weight: 700; color: #1e293b; font-size: 0.9rem; margin-bottom: 6px; display: block;">
+              <i class="fa-solid fa-phone-volume" style="color: #15803d; margin-right: 6px;"></i> Mobile Number (WhatsApp)
+            </label>
+            <input type="tel" id="phone_number" class="form-input" placeholder="e.g. 6204339748" required style="border-radius: 12px; border: 1.5px solid #cbd5e1; padding: 12px 16px; width: 100%;" />
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label for="delivery_address" style="font-weight: 700; color: #1e293b; font-size: 0.9rem; margin-bottom: 6px; display: block;">
+              <i class="fa-solid fa-map-location-dot" style="color: #15803d; margin-right: 6px;"></i> Delivery Address / Landmark
+            </label>
+            <input type="text" id="delivery_address" class="form-input" placeholder="e.g. Near kali Mandir, Barbad (828109)" required style="border-radius: 12px; border: 1.5px solid #cbd5e1; padding: 12px 16px; width: 100%;" />
+          </div>
+
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: 700; color: #1e293b; font-size: 0.9rem;">
+              <i class="fa-solid fa-list-check" style="color: #15803d; margin-right: 6px;"></i> Select Items & Enter Quantity:
+            </label>
+            
+            <div id="dynamic-form-items" style="display: flex; flex-direction: column; gap: 10px; background: #ffffff; padding: 14px; border-radius: 16px; border: 1.5px solid #bbf7d0; max-height: 300px; overflow-y: auto;">
+              <!-- Items will load automatically via JS -->
+            </div>
+          </div>
+
+          <div style="background: #dcfce7; border: 1px solid #86efac; padding: 12px 16px; border-radius: 12px; margin-bottom: 20px; font-size: 0.88rem; color: #166534; display: flex; align-items: center; gap: 10px; font-weight: 600;">
+            <i class="fa-solid fa-truck-fast" style="font-size: 1.2rem; color: #15803d;"></i>
+            <span>Free doorstep delivery on orders above Rs.499 in Barbad!</span>
+          </div>
+
+          <button type="submit" class="btn-submit" style="background: linear-gradient(135deg, #15803d, #166534); color: #ffffff; padding: 15px; border-radius: 14px; font-weight: 800; font-size: 1.05rem; width: 100%; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; box-shadow: 0 10px 20px rgba(21, 128, 61, 0.3);">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> Send Order on WhatsApp Now
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cart Drawer Overlay & Modal -->
+  <div class="cart-drawer-overlay" id="cart-overlay">
+    <div class="cart-drawer">
+      <div class="cart-header">
+        <h3><i class="fa-solid fa-basket-shopping" style="color: #15803d;"></i> Your Grocery Cart</h3>
+        <button class="cart-close-btn" id="cart-close" aria-label="Close Cart">&times;</button>
+      </div>
+
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Dynamically rendered cart items -->
+      </div>
+
+      <div class="cart-footer">
+        <div style="background: white; padding: 12px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 12px;">
+          <h4 style="font-size: 0.92rem; color: #15803d; margin-bottom: 8px; font-weight: 700;">
+            <i class="fa-solid fa-location-dot"></i> Your Delivery Details
+          </h4>
+          <input type="text" id="cart-cust-name" class="form-input" placeholder="Your Name" style="margin-bottom: 8px; padding: 8px 12px; font-size: 0.88rem;" />
+          <input type="tel" id="cart-cust-phone" class="form-input" placeholder="Your Mobile Number" style="margin-bottom: 8px; padding: 8px 12px; font-size: 0.88rem;" />
+          <input type="text" id="cart-cust-address" class="form-input" placeholder="Your Delivery Address / Village / House No." style="padding: 8px 12px; font-size: 0.88rem;" required />
+        </div>
+
+        <div class="cart-summary-row">
+          <span>Items Subtotal:</span>
+          <span id="cart-subtotal">₹0</span>
+        </div>
+        <div class="cart-summary-row">
+          <span>Delivery Charge:</span>
+          <span id="cart-delivery">₹0</span>
+        </div>
+        <div class="cart-summary-total">
+          <span>Total Amount:</span>
+          <span id="cart-total" style="color: #15803d;">₹0</span>
+        </div>
+
+        <div class="cart-checkout-actions">
+          <button class="btn-whatsapp-checkout" onclick="checkoutWhatsApp()">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Send Order via WhatsApp
+          </button>
+          <a class="btn-form-checkout" href="#contact" onclick="document.getElementById('cart-overlay').classList.remove('active')" style="text-decoration: none;">
+            <i class="fa-solid fa-truck"></i> Place Delivery Order Form
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h2>Mandal Kirana Store</h2>
+        <p>Your friendly neighborhood grocery store in Barbad, Jharkhand (Pincode 828109). Supplying 100% fresh, hygienic, and authentic daily essentials to local families at unbeatable prices.</p>
+        <div style="display: flex; gap: 12px; font-size: 1.2rem;">
+          <a href="https://wa.me/916204339748" target="_blank" style="color: #25d366;"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="tel:6204339748" style="color: #38bdf8;"><i class="fa-solid fa-phone"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#products">Grocery Catalog</a></li>
+          <li><a href="#combos">Monthly Ration Kit</a></li>
+          <li><a href="#categories">Item Categories</a></li>
+          <li><a href="#contact">Order Form</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="#products">Atta, Flours & Rice</a></li>
+          <li><a href="#products">Pulses & Fresh Dals</a></li>
+          <li><a href="#products">Cooking Oils & Ghee</a></li>
+          <li><a href="#products">Spices & Seasonings</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Store Contact</h4>
+        <ul>
+          <li><strong style="color: white;">Name:</strong> Mandal Kirana Store</li>
+          <li><strong style="color: white;">Phone:</strong> 6204339748</li>
+          <li><strong style="color: white;">Location:</strong> Barbad, Jharkhand</li>
+          <li><strong style="color: white;">Pin Code:</strong> 828109</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Mandal Kirana Store, Barbad, Jharkhand 828109. All Rights Reserved. Call: 6204339748</p>
+    </div>
+  </footer>
+
+  <!-- App Script & Auto-fill / Profile Logic -->
+  <script src="script.js"></script>
+  
+ <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedUser = JSON.parse(localStorage.getItem('kirana_user'));
+
+      if (savedUser) {
+        // 1. प्रोफाइल नाम दिखाना
+        const loginLinkBtn = document.getElementById('login-link-btn');
+        const profileContainer = document.getElementById('profile-container');
+        const navUsername = document.getElementById('nav-username');
+
+        if (loginLinkBtn) loginLinkBtn.style.display = 'none';
+        if (profileContainer && navUsername) {
+          navUsername.textContent = savedUser.username;
+          profileContainer.style.display = 'flex';
+        }
+
+        // 2. मुख्य ऑर्डर फॉर्म में नाम, मोबाइल और एड्रेस ऑटो-फिल करना
+        const custName = document.getElementById('customer_name');
+        const phoneNum = document.getElementById('phone_number');
+        const delAddress = document.getElementById('delivery_address');
+
+        if (custName && savedUser.username) custName.value = savedUser.username;
+        if (phoneNum && savedUser.mobile) phoneNum.value = savedUser.mobile;
+        if (delAddress && savedUser.address) delAddress.value = savedUser.address;
+
+        // 3. कार्ट के अंदर वाले फॉर्म में भी ऑटो-फिल करना
+        const cartName = document.getElementById('cart-cust-name');
+        const cartPhone = document.getElementById('cart-cust-phone');
+        const cartAddress = document.getElementById('cart-cust-address');
+
+        if (cartName && savedUser.username) cartName.value = savedUser.username;
+        if (cartPhone && savedUser.mobile) cartPhone.value = savedUser.mobile;
+        if (cartAddress && savedUser.address) cartAddress.value = savedUser.address;
+      }
+    });
+
+    // लॉगआउट फंक्शन
+    function logoutUser() {
+      localStorage.removeItem('kirana_user');
+      alert('Logged out successfully!');
+      window.location.reload();
+    }
+  </script>
+</body>
+</html>

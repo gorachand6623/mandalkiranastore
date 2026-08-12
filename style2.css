@@ -1,0 +1,136 @@
+﻿/* ==========================================
+   Place Delivery Order Form Styles
+   ========================================== */
+
+.contact-form-card {
+  background-color: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: var(--shadow-lg);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-form-card .form-group {
+  margin-bottom: 18px;
+}
+
+.contact-form-card label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+}
+
+.contact-form-card .form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+}
+
+.contact-form-card .form-input:focus {
+  background-color: var(--white);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15);
+}
+
+.contact-form-card textarea.form-input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.contact-form-card .btn-submit {
+  width: 100%;
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 14px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(21, 128, 61, 0.3);
+  transition: background 0.2s, transform 0.1s;
+}
+
+.contact-form-card .btn-submit:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
+}/* ==========================================
+   Guaranteed Delivery Order Form Styles
+   ========================================== */
+
+#order-form-box {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 20px !important;
+  padding: 30px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+  max-width: 600px !important;
+  margin: 30px auto !important;
+}
+
+#order-form-box .form-group {
+  margin-bottom: 18px !important;
+}
+
+#order-form-box label {
+  display: block !important;
+  font-size: 0.9rem !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  margin-bottom: 6px !important;
+}
+
+#order-form-box .form-input {
+  width: 100% !important;
+  padding: 12px 16px !important;
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 12px !important;
+  font-size: 0.95rem !important;
+  color: #1e293b !important;
+  outline: none !important;
+}
+
+#order-form-box .form-input:focus {
+  background-color: #ffffff !important;
+  border-color: #15803d !important;
+  box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15) !important;
+}
+
+#order-form-box textarea.form-input {
+  resize: vertical !important;
+  min-height: 100px !important;
+}
+
+#order-form-box .btn-submit {
+  width: 100% !important;
+  background-color: #15803d !important;
+  color: #ffffff !important;
+  padding: 14px !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(21, 128, 61, 0.3) !important;
+}
+
+#order-form-box .btn-submit:hover {
+  background-color: #166534 !important;
+}

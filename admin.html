@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mandal Kirana - Admin Panel & Editor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="background: #f0fdf4; padding: 20px;">
+
+  <div style="max-width: 600px; margin: 20px auto; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+    <h2 style="color: #15803d; margin-bottom: 20px;"><i class="fa-solid fa-lock"></i> Store Admin Panel</h2>
+    
+    <!-- प्रोडक्ट जोड़ने या एडिट करने का फॉर्म -->
+    <form id="add-product-form">
+      <input type="hidden" id="p-id" /> <!-- एडिट करने के लिए सीक्रेट आईडी -->
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label style="font-weight:700;">Product Name</label>
+        <input type="text" id="p-name" class="form-input" placeholder="e.g. Fortune Atta" required />
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label style="font-weight:700;">Category</label>
+        <select id="p-category" class="form-input" style="width:100%; padding:12px; border-radius:10px; border:1px solid #cbd5e1;">
+          <option value="staples">Staples (Atta & Rice)</option>
+          <option value="pulses">Pulses & Dals</option>
+          <option value="oils">Oil & Ghee</option>
+          <option value="spices">Spices & Salt</option>
+          <option value="dairy">Dairy</option>
+          <option value="snacks">Snacks & Tea</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label style="font-weight:700;">Weight / Pack Size</label>
+        <input type="text" id="p-weight" class="form-input" placeholder="e.g. 10 kg Pack" required />
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label style="font-weight:700;">Selling Price (Rs.)</label>
+        <input type="number" id="p-price" class="form-input" placeholder="390" required />
+      </div>
+
+      <div class="form-group" style="margin-bottom: 15px;">
+        <label style="font-weight:700;">MRP (Rs.)</label>
+        <input type="number" id="p-mrp" class="form-input" placeholder="440" required />
+      </div>
+
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label style="font-weight:700;">Product Image File Name (e.g. ft.jpg)</label>
+        <input type="text" id="p-image" class="form-input" placeholder="ft.jpg" required />
+      </div>
+
+      <button type="submit" id="submit-btn" style="background: #15803d; color: white; width:100%; padding:14px; border-radius:10px; font-weight:700; cursor:pointer; border:none;">
+        Publish Product Live
+      </button>
+    </form>
+  </div>
+
+  <!-- लाइव प्रोडक्ट्स की लिस्ट जिन्हें आप एडिट या डिलीट कर सकते हैं -->
+  <div style="max-width: 600px; margin: 20px auto; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+    <h3 style="color: #1e293b; margin-bottom: 15px;">Manage Existing Products</h3>
+    <div id="admin-product-list">
+      <!-- यहाँ सारे प्रोडक्ट्स दिखेंगे -->
+    </div>
+  </div>
+
+  <!-- Firebase Scripts & Logic -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC3qie6HBFdDuXOjfqI1QvhutJwSPiK1zU",
+      authDomain: "mandal-kirana-store.firebaseapp.com",
+      projectId: "mandal-kirana-store",
+      storageBucket: "mandal-kirana-store.firebasestorage.app",
+      messagingSenderId: "651386520562",
+      appId: "1:651386520562:web:6048322dd3af94410f216b",
+      measurementId: "G-N1VRXGR5C4"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById('add-product-form');
+    const productListEl = document.getElementById('admin-product-list');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // प्रोडक्ट्स लोड करें
+    async function loadAdminProducts() {
+      const querySnapshot = await getDocs(collection(db, "products"));
+      productListEl.innerHTML = "";
+      querySnapshot.forEach((documentSnap) => {
+        const p = documentSnap.data();
+        const id = documentSnap.id;
+
+        productListEl.innerHTML += `
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding: 10px 0;">
+            <div>
+              <strong>${p.name}</strong> (${p.weight}) - Rs. ${p.price}
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button onclick="window.editProduct('${id}', '${p.name}', '${p.category}', '${p.weight}', ${p.price}, ${p.mrp}, '${p.image}')" style="background: #38bdf8; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer;">Edit</button>
+              <button onclick="window.deleteProduct('${id}')" style="background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer;">Delete</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    loadAdminProducts();
+
+    // फॉर्म सबमिट (नया जोड़ना या अपडेट करना)
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const docId = document.getElementById('p-id').value;
+      const name = document.getElementById('p-name').value;
+      const category = document.getElementById('p-category').value;
+      const weight = document.getElementById('p-weight').value;
+      const price = Number(document.getElementById('p-price').value);
+      const mrp = Number(document.getElementById('p-mrp').value);
+      const image = document.getElementById('p-image').value;
+
+      try {
+        if (docId) {
+          // अगर आईडी है तो अपडेट (Edit) करें
+          const productRef = doc(db, "products", docId);
+          await updateDoc(productRef, { name, category, weight, price, mrp, image });
+          alert('प्रोडक्ट सफलतापूर्वक अपडेट हो गया है!');
+          document.getElementById('p-id').value = "";
+          submitBtn.textContent = "Publish Product Live";
+        } else {
+          // नया जोड़ें
+          await addDoc(collection(db, "products"), { name, category, weight, price, mrp, image, createdAt: Date.now() });
+          alert('नया प्रोडक्ट सफलतापूर्वक जुड़ गया है!');
+        }
+        form.reset();
+        loadAdminProducts();
+      } catch (error) {
+        alert('एरर: ' + error.message);
+      }
+    });
+
+    // एडिट करने के लिए डेटा फॉर्म में भरना
+    window.editProduct = function(id, name, category, weight, price, mrp, image) {
+      document.getElementById('p-id').value = id;
+      document.getElementById('p-name').value = name;
+      document.getElementById('p-category').value = category;
+      document.getElementById('p-weight').value = weight;
+      document.getElementById('p-price').value = price;
+      document.getElementById('p-mrp').value = mrp;
+      document.getElementById('p-image').value = image;
+      
+      submitBtn.textContent = "Update Product";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // डिलीट करना
+    window.deleteProduct = async function(id) {
+      if (confirm('क्या आप सचमुच इस प्रोडक्ट को हटाना चाहते हैं?')) {
+        await deleteDoc(doc(db, "products", id));
+        alert('प्रोडक्ट हटा दिया गया है!');
+        loadAdminProducts();
+      }
+    }
+  </script>
+</body>
+</html>
